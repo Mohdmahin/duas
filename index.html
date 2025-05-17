@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Duas</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🕊️ Duas</h1>
+      <p>Select your emotion to find a comforting dua</p>
+    </header>
+
+    <!-- Morning Duas Section -->
+    <section class="fixed-duas">
+      <h2>🌅 Morning Duas</h2>
+      <ul>
+        <li>
+          <strong>Start your day with:</strong><br />
+          <span class="arabic">اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلاَّ أَنْتَ</span><br />
+          <em>Allahumma anta rabbi la ilaha illa anta</em><br />
+          (O Allah, You are my Lord, none has the right to be worshipped except You.)
+        </li>
+        <li>
+          <strong>Morning gratitude:</strong><br />
+          <span class="arabic">الحَمْدُ للهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</span><br />
+          <em>Alhamdulillahilladhi ahyana ba’da ma amatana wa ilayhin-nushur</em><br />
+          (Praise be to Allah who gave us life after causing us to die, and to Him is the return.)
+        </li>
+      </ul>
+    </section>
+
+    <!-- Evening Duas Section -->
+    <section class="fixed-duas">
+      <h2>🌙 Evening Duas</h2>
+      <ul>
+        <li>
+          <strong>Before sleeping:</strong><br />
+          <span class="arabic">بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا</span><br />
+          <em>Bismika Allahumma amutu wa ahya</em><br />
+          (In Your name O Allah, I die and I live.)
+        </li>
+        <li>
+          <strong>Seeking protection:</strong><br />
+          <span class="arabic">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</span><br />
+          <em>A’udhu billahi min ash-shaytan ir-rajim</em><br />
+          (I seek refuge with Allah from the accursed devil.)
+        </li>
+      </ul>
+    </section>
+
+    <div class="emotion-selector">
+      <label for="emotion">Choose Emotion:</label>
+      <select id="emotion" onchange="showDua()">
+        <option value="">-- Select Emotion --</option>
+        <option value="sad">Sad</option>
+        <option value="grateful">Grateful</option>
+        <option value="anxious">Anxious</option>
+        <option value="hopeful">Hopeful</option>
+        <option value="forgiveness">Seeking Forgiveness</option>
+      </select>
+    </div>
+
+    <div id="duaCard" class="dua-card" style="display:none;"></div>
+
+    <section class="importance-section">
+      <h2>🌟 The Importance of Daily Prayer</h2>
+      <p>Daily prayers are a vital part of a Muslim's spiritual life. They strengthen your connection with Allah, bring peace to your heart, and guide your actions. Through prayer, one finds patience, gratitude, and comfort in all circumstances. Making dua with sincere emotion enhances this beautiful bond.</p>
+      <p>“Indeed, prayer prohibits immorality and wrongdoing...” (Quran 29:45)</p>
+      <p>Prayer is not just a ritual but a refuge, a moment to disconnect from worldly worries and reconnect with the Divine. It nurtures the soul, instills discipline, and reminds us to live with mindfulness and humility.</p>
+      <p>By aligning your heart through daily duas based on your feelings, you invite healing and spiritual growth tailored to your emotional needs.</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Duas | Made with ❤️</p>
+    </footer>
+  </div>
+
+  <script>
+    const duas = {
+      sad: {
+        title: "Feeling Sad",
+        arabic: "اللّهُمَّ اجْبُرْ كَسْري وَرُدَّ لي قَلْبي",
+        transliteration: "Allahumma ajbur kasri wa rudda li qalbi",
+        meaning: "O Allah, mend my brokenness and return my heart to me."
+      },
+      grateful: {
+        title: "Feeling Grateful",
+        arabic: "الْحَمْدُ للهِ عَلَى كُلِّ حَالٍ",
+        transliteration: "Alhamdulillah 'ala kulli hal",
+        meaning: "All praise is due to Allah in every situation."
+      },
+      anxious: {
+        title: "Feeling Anxious",
+        arabic: "اللّهُمَّ إنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ",
+        transliteration: "Allahumma inni a'udhu bika minal-hammi wal-hazan",
+        meaning: "O Allah, I seek refuge in You from worry and grief."
+      },
+      hopeful: {
+        title: "Needing Hope",
+        arabic: "وَعَسى أَن تَكْرَهوا شَيْئًا وَهُوَ خَيْرٌ لَكُمْ",
+        transliteration: "Wa 'asa an takrahu shay'an wahuwa khayrun lakum",
+        meaning: "It may be that you dislike something, and it is good for you."
+      },
+      forgiveness: {
+        title: "Seeking Forgiveness",
+        arabic: "رَبِّ اغْفِرْ لي وَارْحَمْني",
+        transliteration: "Rabbi ighfir li warhamni",
+        meaning: "My Lord, forgive me and have mercy on me."
+      }
+    };
+
+    function showDua() {
+      const emotion = document.getElementById('emotion').value;
+      const card = document.getElementById('duaCard');
+
+      if (!emotion) {
+        card.style.display = 'none';
+        return;
+      }
+
+      const dua = duas[emotion];
+      card.innerHTML = `
+        <h2>${dua.title}</h2>
+        <p class="arabic">${dua.arabic}</p>
+        <p class="transliteration">${dua.transliteration}</p>
+        <p class="meaning">${dua.meaning}</p>
+      `;
+      card.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background-color: #f3f6f4;  /* soft off-white with green tint */
+  color: #2f4f4f;  /* dark slate green */
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+header {
+  background-color: #8fbc8f; /* dark sea green */
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(143,188,143,0.5);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  color: #f0fff0; /* honeydew */
+  text-shadow: 1px 1px 2px #355e35;
+}
+
+header p {
+  font-style: italic;
+  color: #d0ead0;
+  margin-top: 8px;
+}
+
+/* Unique vintage style dropdown */
+.emotion-selector {
+  margin-top: 20px;
+  text-align: center;
+}
+
+select {
+  padding: 12px 18px;
+  font-size: 1.1em;
+  border-radius: 30px;
+  border: 2px solid #679267;
+  background: linear-gradient(145deg, #d7e9d7, #a8cba8);
+  color: #2f4f4f;
+  cursor: pointer;
+  box-shadow:
+    4px 4px 8px #7da87d,
+    -4px -4px 8px #e3f0e3;
+  transition: all 0.3s ease;
+  font-family: 'Georgia', serif;
+}
+
+select:hover, select:focus {
+  border-color: #4b6b4b;
+  box-shadow:
+    0 0 12px #86b486;
+  outline: none;
+}
+
+/* Dua card styles */
+.dua-card {
+  background-color: #e6f0e6;
+  border-left: 5px solid #679267;
+  margin-top: 20px;
+  padding: 15px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.dua-card h2 {
+  color: #4a6a4a;
+}
+
+.arabic {
+  font-size: 1.6em;
+  direction: rtl;
+  text-align: right;
+  color: #2b3d2b;
+  margin-top: 10px;
+}
+
+.transliteration {
+  font-style: italic;
+  color: #476447;
+  margin: 10px 0;
+}
+
+.meaning {
+  color: #355e35;
+}
+
+/* Importance section with richer style */
+.importance-section {
+  background-color: #d7e9d7;
+  border-left: 6px solid #679267;
+  margin-top: 30px;
+  padding: 25px 20px;
+  border-radius: 8px;
+  color: #4a6a4a;
+  font-style: normal;
+  font-size: 1.1em;
+  line-height: 1.6em;
+  box-shadow: 3px 3px 7px rgba(103,146,103,0.3);
+}
+
+.importance-section h2 {
+  margin-top: 0;
+  color: #3f5e3f;
+}
+
+/* Morning & Evening Duas section */
+.fixed-duas {
+  background-color: #c9d9c9;
+  border-left: 6px solid #4b6b4b;
+  margin-top: 30px;
+  padding: 20px 20px;
+  border-radius: 8px;
+  color: #375937;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  box-shadow: 2px 2px 6px rgba(75,107,75,0.25);
+}
+
+.fixed-duas h2 {
+  margin-top: 0;
+  color: #2f4f2f;
+}
+
+.fixed-duas ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.fixed-duas li {
+  margin-bottom: 18px;
+}
+
+.fixed-duas strong {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.fixed-duas .arabic {
+  font-size: 1.3em;
+  direction: rtl;
+  color: #254025;
+  margin-bottom: 4px;
+}
+
+.fixed-duas em {
+  color: #375937;
+  font-style: italic;
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #5b705b;
+}
