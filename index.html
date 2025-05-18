@@ -6,34 +6,43 @@
   <title>DuaNest</title>
   <link rel="stylesheet" href="style.css"/>
   <style>
-    /* Minimal styling for demonstration */
+    /* Existing styles */
     .arabic { font-family: "Amiri", serif; font-size: 1.2em; }
     .transliteration { font-style: italic; color: #555; }
     .meaning { margin-bottom: 1em; }
     .dua-card { border: 1px solid #ccc; padding: 10px; margin-top: 10px; background: #f9f9f9; }
+
+    /* Animation styles */
+    .fade-slide {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-in-out;
+    }
+
+    .fade-slide.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <header>
+    <header class="fade-slide">
       <h1>🕊️ DuaNest</h1>
       <p>A cozy place for daily duas</p>
     </header>
 
-    <!-- Today's Date -->
-    <p id="current-date" style="font-weight: bold;"></p>
+    <p id="current-date" style="font-weight: bold;" class="fade-slide"></p>
 
-    <!-- Time-based Dua -->
-    <h2>Dua for This Time</h2>
-    <p id="time-dua" style="font-style: italic;"></p>
+    <h2 class="fade-slide">Dua for This Time</h2>
+    <p id="time-dua" style="font-style: italic;" class="fade-slide"></p>
 
-    <!-- Random Dua Button -->
-    <h2>Random Dua</h2>
-    <button onclick="showRandomDua()">Show Random Dua</button>
-    <p id="random-dua" style="font-style: italic;"></p>
+    <h2 class="fade-slide">Random Dua</h2>
+    <button onclick="showRandomDua()" class="fade-slide">Show Random Dua</button>
+    <p id="random-dua" style="font-style: italic;" class="fade-slide"></p>
 
-    <!-- Morning Duas Section -->
-    <section class="fixed-duas">
+    <!-- Morning Duas -->
+    <section class="fixed-duas fade-slide">
       <h2>🌅 Morning Duas</h2>
       <ul>
         <li>
@@ -51,8 +60,8 @@
       </ul>
     </section>
 
-    <!-- Evening Duas Section -->
-    <section class="fixed-duas">
+    <!-- Evening Duas -->
+    <section class="fixed-duas fade-slide">
       <h2>🌙 Evening Duas</h2>
       <ul>
         <li>
@@ -70,7 +79,8 @@
       </ul>
     </section>
 
-    <div class="emotion-selector">
+    <!-- Emotion Dropdown -->
+    <div class="emotion-selector fade-slide">
       <label for="emotion">Choose Emotion:</label>
       <select id="emotion" onchange="showDua()">
         <option value="">-- Select Emotion --</option>
@@ -82,9 +92,10 @@
       </select>
     </div>
 
-    <div id="duaCard" class="dua-card" style="display:none;"></div>
+    <div id="duaCard" class="dua-card fade-slide" style="display:none;"></div>
 
-    <section class="importance-section">
+    <!-- Importance Section -->
+    <section class="importance-section fade-slide">
       <h2>🌟 The Importance of Daily Prayer</h2>
       <p>Daily prayers are a vital part of a Muslim's spiritual life. They strengthen your connection with Allah, bring peace to your heart, and guide your actions. Through prayer, one finds patience, gratitude, and comfort in all circumstances. Making dua with sincere emotion enhances this beautiful bond.</p>
       <p>“Indeed, prayer prohibits immorality and wrongdoing...” (Quran 29:45)</p>
@@ -92,11 +103,12 @@
       <p>By aligning your heart through daily duas based on your feelings, you invite healing and spiritual growth tailored to your emotional needs.</p>
     </section>
 
-    <footer>
+    <footer class="fade-slide">
       <p>&copy; 2025 Duas | Made with ❤️</p>
     </footer>
   </div>
 
+  <!-- JavaScript Section -->
   <script>
     // Dua data for emotions
     const duas = {
@@ -151,7 +163,6 @@
       card.style.display = 'block';
     } 
 
-    // Time-based duas
     const morningDua = "اللّهُمَّ بك أَصْبَحْنا، وبك أَمْسَيْنا، وبك نَحْيا، وبك نَموتُ، وإليك النُّشُور";
     const eveningDua = "اللّهُمَّ أَمْسَيْنا بك، وبك أَصْبَحْنا، وبك نَحْيا، وبك نَموتُ، وإليك المَصير";
 
@@ -161,7 +172,6 @@
       document.getElementById("time-dua").textContent = dua;
     }
 
-    // Random duas array
     const randomDuas = [
       "اللّهُـمَّ أَنْتَ رَبِّـي لا إِلـهَ إِلاّ أَنْتَ، خَلَقْتَنـي وَأَنا عَبْـدُك",
       "اللّهُـمَّ إِنِّي أَصْبَـحْتُ أُشْهِـدُكَ، وَأُشْهِدُ حَمَلَـةَ عَرْشِـكَ",
@@ -173,9 +183,19 @@
       document.getElementById("random-dua").textContent = randomDuas[randomIndex];
     }
 
+    // Scroll-based animation trigger
+    function revealOnScroll() {
+      const elements = document.querySelectorAll(".fade-slide");
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          el.classList.add("visible");
+        }
+      });
+    }
+
     // On page load
     document.addEventListener("DOMContentLoaded", function () {
-      // Show formatted date
       const today = new Date();
       const formattedDate = today.toLocaleDateString("en-GB", {
         weekday: "long",
@@ -185,9 +205,11 @@
       });
       document.getElementById("current-date").textContent = "📅 " + formattedDate;
 
-      // Show time-based dua
       showTimeBasedDua();
+      revealOnScroll();
     });
+
+    window.addEventListener("scroll", revealOnScroll);
   </script>
 </body>
 </html>
