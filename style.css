@@ -163,6 +163,8 @@ footer {
   font-size: 0.9em;
   color: #0a0a0a;
 }
+
+/* Button style */
 button {
   background-color: #4caf50;
   color: white;
@@ -178,4 +180,48 @@ button {
 button:hover {
   transform: scale(1.05);
   background-color: #388e3c;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Animate elements on scroll */
+.animate {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.animate.visible {
+  opacity: 1;
+  animation: slideInUp 0.8s ease forwards;
+}
+
+/* Specific styles for entrance effects */
+header, .fixed-duas, .importance-section, .emotion-selector, #random-dua, #time-dua {
+  animation: slideInLeft 1s ease both;
 }
