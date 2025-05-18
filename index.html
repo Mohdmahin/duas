@@ -2,16 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Duas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DuaNest</title>
   <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Minimal styling for demonstration */
+    .arabic { font-family: "Amiri", serif; font-size: 1.2em; }
+    .transliteration { font-style: italic; color: #555; }
+    .meaning { margin-bottom: 1em; }
+    .dua-card { border: 1px solid #ccc; padding: 10px; margin-top: 10px; background: #f9f9f9; }
+  </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🕊️ Duas</h1>
-      <p>Select your emotion to find a comforting dua</p>
+      <h1>🕊️ DuaNest</h1>
+      <p>A cozy place for daily duas</p>
     </header>
+
+    <!-- Today's Date -->
+    <p id="current-date" style="font-weight: bold;"></p>
+
+    <!-- Time-based Dua -->
+    <h2>Dua for This Time</h2>
+    <p id="time-dua" style="font-style: italic;"></p>
+
+    <!-- Random Dua Button -->
+    <h2>Random Dua</h2>
+    <button onclick="showRandomDua()">Show Random Dua</button>
+    <p id="random-dua" style="font-style: italic;"></p>
 
     <!-- Morning Duas Section -->
     <section class="fixed-duas">
@@ -25,7 +44,7 @@
         </li>
         <li>
           <strong>Morning gratitude:</strong><br />
-          <span class="arabic">الحَمْدُ للهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</span><br />
+          <span class="arabic">الْحَمْدُ للهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ</span><br />
           <em>Alhamdulillahilladhi ahyana ba’da ma amatana wa ilayhin-nushur</em><br />
           (Praise be to Allah who gave us life after causing us to die, and to Him is the return.)
         </li>
@@ -79,6 +98,7 @@
   </div>
 
   <script>
+    // Dua data for emotions
     const duas = {
       sad: {
         title: "Feeling Sad",
@@ -129,7 +149,45 @@
         <p class="meaning">${dua.meaning}</p>
       `;
       card.style.display = 'block';
+    } 
+
+    // Time-based duas
+    const morningDua = "اللّهُمَّ بك أَصْبَحْنا، وبك أَمْسَيْنا، وبك نَحْيا، وبك نَموتُ، وإليك النُّشُور";
+    const eveningDua = "اللّهُمَّ أَمْسَيْنا بك، وبك أَصْبَحْنا، وبك نَحْيا، وبك نَموتُ، وإليك المَصير";
+
+    function showTimeBasedDua() {
+      const hour = new Date().getHours();
+      const dua = hour < 18 ? morningDua : eveningDua;
+      document.getElementById("time-dua").textContent = dua;
     }
+
+    // Random duas array
+    const randomDuas = [
+      "اللّهُـمَّ أَنْتَ رَبِّـي لا إِلـهَ إِلاّ أَنْتَ، خَلَقْتَنـي وَأَنا عَبْـدُك",
+      "اللّهُـمَّ إِنِّي أَصْبَـحْتُ أُشْهِـدُكَ، وَأُشْهِدُ حَمَلَـةَ عَرْشِـكَ",
+      "اللّهُـمَّ عافِـني في بَدَنـي، اللّهُـمَّ عافِـني في سَمْعـي"
+    ];
+
+    function showRandomDua() {
+      const randomIndex = Math.floor(Math.random() * randomDuas.length);
+      document.getElementById("random-dua").textContent = randomDuas[randomIndex];
+    }
+
+    // On page load
+    document.addEventListener("DOMContentLoaded", function () {
+      // Show formatted date
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString("en-GB", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+      document.getElementById("current-date").textContent = "📅 " + formattedDate;
+
+      // Show time-based dua
+      showTimeBasedDua();
+    });
   </script>
 </body>
 </html>
